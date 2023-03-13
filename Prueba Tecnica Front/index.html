@@ -18,14 +18,17 @@
 <body>
     <div class="container">
         <div class="row mb-3 mt-3">
-            <div class="col-4">
+            <div class="col-3">
                 <button type="button" class="btn btn-primary" onclick="IrFormularioCrear()">Crear Un Nuevo Estudiante</button>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <button type="button" class="btn btn-primary" onclick="IrFormularioCrear()">Buscar Un Estudiante</button>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <button type="button" class="btn btn-primary" onclick="IrCursos()">Cursos</button>
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-primary" onclick="IrAsifnacion()">Aisgnacion De Cursos</button>
             </div>
         </div>
 
@@ -61,6 +64,9 @@
     function IrCursos(){
         window.location ="cursos.html";
     }
+    function IrAsifnacion(){
+        window.location="listacursosestu.html"
+    }
     function Obtener() {
 
             $(".table tbody").html("");
@@ -76,9 +82,7 @@
                             $("<td>").text(fila.ApellidoEstu),
                             $("<td>").text(fila.EmailEstu),
                             $("<td>").append(
-                                $("<button>").data("id", fila.IdEstudiante).addClass("btn btn-success btn-sm mr-1 editar").text("Editar").attr({ "type": "button" }),
-                                $("<button>").data("id", fila.IdEstudiante).addClass("btn btn-danger btn-sm mr-1 eliminar").text("Eliminar").attr({ "type": "button" })
-                            )
+                                $("<button>").data("id", fila.IdEstudiante).addClass("btn btn-success btn-sm mr-1 editar").text("Editar").attr({ "type": "button" }),                            )
                         ).appendTo(".table");
                     });
                 });
@@ -88,26 +92,6 @@
         console.log($(this).data("id"));
         window.location = "estudiantes.html?id=" + $(this).data("id");
     });
-
-    $(document).on('click', '.eliminar', function () {
-        console.log($(this).data("id"));
-
-        $.ajax({
-            method: "DELETE",
-            url: "https://localhost:44399/api/Estudiante/" + $(this).data("id")
-        })
-            .done(function (response) {
-                console.log(response);
-                if (response) {
-                    Obtener();
-                    alert("Estudiante Eliminado")
-                } else {
-                    alert("Error al eliminar")
-                }
-            });
-
-    });
-
 </script>
 
 </html>

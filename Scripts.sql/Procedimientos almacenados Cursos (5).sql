@@ -89,7 +89,7 @@ create procedure curso_eliminar(
 as
 begin
 
-delete from CURSOS where IdCurso = @idcurso
+delete from ASIGCURSOS where IdCurso = @idcurso
 
 end
 

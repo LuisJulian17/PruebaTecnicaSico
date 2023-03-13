@@ -19,19 +19,10 @@
     <div class="container">
         <div class="row mb-3 mt-3">
             <div class="col-3">
-                <button type="button" class="btn btn-primary" onclick="IrFormularioCrear()">Buscar Un
-                    Estudiante</button>
+                <button type="button" class="btn btn-primary" onclick="IrAsignar()">Asignar Curso</button>
             </div>
             <div class="col-3">
-                <button type="button" class="btn btn-primary" onclick="IrFormularioCrearCurso()">Crear Un Nuevo
-                    Curso</button>
-            </div>
-            <div class="col-3">
-                <button type="button" class="btn btn-primary" onclick="IrFormularioCrearCurso()">Buscar Un
-                    Curso</button>
-            </div>
-            <div class="col-3">
-                <button type="button" class="btn btn-primary" onclick="IrAsifnacion()">Aisgnacion De Cursos</button>
+                <button type="button" class="btn btn-primary" onclick="IrCursos()">Cursos</button>
             </div>
         </div>
 
@@ -41,8 +32,14 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col"># Estudiante</th>
+                            <th scope="col">Documento</th>
+                            <th scope="col">Nombres</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Email</th>
+                            <th scope="col"># Curso</th>
                             <th scope="col">Curso</th>
-                            <th scope="col">Intensidad Horaria</th>
+                            <th scope="col">Horas Curso</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -57,36 +54,41 @@
     </div>
 </body>
 <script>
-
+    var busca = false;
     window.onload = function () {
         Obtener();
     };
-    function IrAsifnacion(){
-        window.location="listacursosestu.html"
+
+    function IrCursos() {
+        window.location = "cursos.html";
+    }
+    function IrAsignar(){
+        window.location = "modicursosestu.html";
     }
     function IrInicio() {
         window.location = "index.html"
-    }
-    function IrFormularioCrear() {
-        window.location = "estudiantes.html";
-    }
-    function IrFormularioCrearCurso() {
-        window.location = "modicursos.html";
     }
     function Obtener() {
 
         $(".table tbody").html("");
 
-        $.get("https://localhost:44391//api/ApiCursos")
+        $.get("https://localhost:44365/api/AsigCurso")
             .done(function (response) {
                 console.log(response);
                 $.each(response, function (id, fila) {
                     $("<tr>").append(
+                        $("<td>").text(fila.IdAsignacion),
+                        $("<td>").text(fila.IdEstudiante),
+                        $("<td>").text(fila.CCEstudiante),
+                        $("<td>").text(fila.NombreEstu),
+                        $("<td>").text(fila.ApellidoEstu),
+                        $("<td>").text(fila.EmailEstu),
                         $("<td>").text(fila.IdCurso),
-                        $("<td>").text(fila.Curso),
-                        $("<td>").text(fila.Horas),
+                        $("<td>").text(fila.NombreCurso),
+                        $("<td>").text(fila.HorasCurso),
                         $("<td>").append(
-                            $("<button>").data("id", fila.IdCurso).addClass("btn btn-success btn-sm mr-1 editar").text("Editar").attr({ "type": "button" }),
+                            $("<button>").data("id", fila.IdAsignacion).addClass("btn btn-success btn-sm mr-1 editar").text("Editar").attr({ "type": "button" }),
+                            $("<button>").data("id", fila.IdAsignacion).addClass("btn btn-danger btn-sm mr-1 eliminar").text("Eliminar").attr({ "type": "button" })
                         )
                     ).appendTo(".table");
                 });
@@ -95,7 +97,7 @@
 
     $(document).on('click', '.editar', function () {
         console.log($(this).data("id"));
-        window.location = "modicursos.html?id=" + $(this).data("id");
+        window.location = "modicursosestu.html?id=" + $(this).data("id");
     });
 
     $(document).on('click', '.eliminar', function () {
@@ -103,19 +105,20 @@
 
         $.ajax({
             method: "DELETE",
-            url: "https://localhost:44391/api/ApiCursos/" + $(this).data("id")
+            url: "https://localhost:44365/api/AsigCurso/" + $(this).data("id")
         })
             .done(function (response) {
                 console.log(response);
                 if (response) {
                     Obtener();
-                    alert("Curso Eliminado")
+                    alert("Curso Asignado Eliminado")
                 } else {
-                    alert("Error al eliminar")
+                    alert("Error Al Eliminar")
                 }
             });
 
     });
+
 </script>
 
 </html>

@@ -28,7 +28,8 @@
                         <input type="text" class="form-control" id="txtbuscar" placeholder="Buscar por ID">
                     </div>
                     <div class="col-3">
-                        <button type="button" class="btn btn-warning" onclick="IrFormularioInicio()">Volver al inicio</button>
+                        <button type="button" class="btn btn-warning" onclick="IrFormularioInicio()">Volver al
+                            inicio</button>
                     </div>
                 </div>
                 <form>
@@ -38,7 +39,7 @@
                         <input type="text" class="form-control" id="txtcurso" placeholder="">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Intencidad Horaria</label>
+                        <label for="exampleInputEmail1">Intensidad Horaria</label>
                         <input type="text" class="form-control" id="txthoras" placeholder="">
                     </div>
                     <button type="button" class="btn btn-primary" onclick="GuardarCurso()">Guardar</button>
@@ -58,7 +59,7 @@
         if (id != null) {
             editar = true;
             $("#txtidcurso").val(id);
-            MostrarEstudiante(id);
+            MostrarCurso(id);
         }
     };
     $.urlParam = function (name) {
@@ -74,16 +75,6 @@
     }
     function IrFormulario() {
         window.location = "cursos.html";
-    }
-
-    function MostrarEstudiante(idEstudiante) {
-
-        $.get("https://localhost:44391/api/ApiCursos/" + idEstudiante)
-            .done(function (response) {
-                console.log(response);
-                $("#txtcurso").val(response.Curso),
-                    $("#txthoras").val(response.Horas)
-            });
     }
 
     function GuardarCurso() {
@@ -158,8 +149,17 @@
         if (id != null) {
             busca = true;
             $("#txtidcurso").val(id);
-            MostrarEstudiante(id);
+            MostrarCurso(id);
         }
+    }
+    function MostrarCurso(idEstudiante) {
+
+        $.get("https://localhost:44391/api/ApiCursos/" + idEstudiante)
+            .done(function (response) {
+                console.log(response);
+                $("#txtcurso").val(response.Curso),
+                    $("#txthoras").val(response.Horas)
+            });
     }
 </script>
 
