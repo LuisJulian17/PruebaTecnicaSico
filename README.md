@@ -11,6 +11,9 @@
 * Descargar el repositorio o clonarlo
 * Abrir la carpeta "Prueba Tecnica Apis"
 * Abrir la solucion de cada Api
+* Para cada solución es necesario instalar Nuget
+* Dar clic derecho sobre el nombre de la solucion en Visual Basic y seleccionar la opción "Administrar Paquetes NuGet..."
+* Damos clic en "Examinar" y buscamos "Microsoft.asp.NET.webapi.cors" sin las comillas e instalamos el primer resultado
 * Ejecutar la Api ApiAsignacion en el puerto 44365
 * Ejecutar la Api ApiCursos en el puerto 44391
 * Ejecutar la Api PruebaTecnicaWebApi en el puerto 44399
