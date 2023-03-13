@@ -2,11 +2,11 @@
 > - JULIAN
 
 ## Instrucciones para instalacion y requisitos para la ejecución
-#Requsitos
+# Requsitos
 * Tener Visual Basic 
 * Tener SQL Server 2016 Minimo
 * Visual Studio Code (para visualizar el front)
-#Intalación
+# Intalación
 * Descargar el repositorio o clonarlo
 * Abrir la carpeta "Prueba Tecnica Apis"
 * Abrir la solucion de cada Api
