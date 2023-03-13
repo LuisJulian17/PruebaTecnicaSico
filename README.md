@@ -1,5 +1,6 @@
 # Prueba Tecnica Sico
 > - JULIAN
+> - Tiempo de trabajo en el proyecto desde el sabado 11 de marzo hasta domingo 12 de marzo)
 
 ## Instrucciones para instalacion y requisitos para la ejecución
 # Requsitos
